@@ -6,10 +6,10 @@
 </p>
 
 <p align="center">
-  <img height="100" height="auto" src="https://camo.githubusercontent.com/2597638ddcc6c96dbdca8baa3ccfd4ae1cb51f1617a89bdb17121c928e25f1b5/68747470733a2f2f6578702e6e6f64656973742e6e65742f6c6f676f732f69736c616d6963632e706e67">
+  <img height="100" height="auto" src="https://user-images.githubusercontent.com/50621007/171044333-016e348d-1d96-4d00-8dce-f7de45aa9f84.png">
 </p>
 
-# Set up monitoring and alerting for haqq validator
+# Set up monitoring and alerting for uptick validator
 
 ## Prerequisites
 
@@ -21,21 +21,21 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/kj89/cosmos_node_
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `aISLM` for haqq testnet. You can find it in genesis file |
-| **bench_prefix** | Prefix for chain addresses, for example, `haqq` for haqq testnet. You can find it in public addresses like this **haqq**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
-| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value for haqq is `12657` |
-| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value for haqq is `12090` |
+| **bond_denom** | Denominated token name, for example, `auptick` for uptick testnet. You can find it in genesis file |
+| **bench_prefix** | Prefix for chain addresses, for example, `uptick` for uptick testnet. You can find it in public addresses like this **uptick**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file. Default value for uptick is `15657` |
+| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file. Default value for uptick is `15090` |
 
 make sure following ports are open:
 - `9100` (node-exporter)
 - `9300` (cosmos-exporter)
 
-prometheus metrics should be `enabled` and port `12660` should be available on validator instance
+prometheus metrics should be `enabled` and port `26660` should be available on validator instance
 
 To enable prometheus you have to run command below and after that please restart service to apply changes
 ```
 # enable prometheus
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.haqqd/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.uptickd/config/config.toml
 ```
 
 ## Deployment
@@ -73,12 +73,12 @@ source $HOME/.bash_profile
 ```
 
 ### Add validator into _prometheus_ configuration file
-To add validator use command with specified `VALIDATOR_IP`, `HAQQ_VALOPER_ADDRESS`, `HAQQ_WALLET_ADDRESS` and `PROJECT_NAME`
+To add validator use command with specified `VALIDATOR_IP`, `UPTICK_VALOPER_ADDRESS`, `UPTICK_WALLET_ADDRESS` and `PROJECT_NAME`
 ```
-$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP HAQQ_VALOPER_ADDRESS HAQQ_WALLET_ADDRESS PROJECT_NAME
+$HOME/cosmos_node_monitoring/add_validator.sh VALIDATOR_IP UPTICK_VALOPER_ADDRESS UPTICK_WALLET_ADDRESS PROJECT_NAME
 ```
 
-> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 haqqvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete haqq1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc haqq```
+> example: ```$HOME/cosmos_node_monitoring/add_validator.sh 1.2.3.4 uptickvaloper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete uptick1zyyz4m9ytdf60fn9yaafx7uy7h463n7a05eshc uptick```
 
 To add more validators just run command above with validator values
 
